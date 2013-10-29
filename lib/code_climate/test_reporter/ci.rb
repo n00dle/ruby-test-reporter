@@ -37,6 +37,12 @@ module CodeClimate
             build_identifier: ENV['TDDIUM_SESSION_ID'],
             worker_id:        ENV['TDDIUM_TID']
           }
+        elsif ENV['TEAMCITY_VERSION']
+          {
+            name:             "teamcity",
+            build_identifier: ENV['BUILD_NUMBER'],
+            branch:           ENV['TEAMCITY_BRANCH']
+          }
         elsif ENV['CI_NAME'] =~ /codeship/i
           {
             name:             "codeship",
