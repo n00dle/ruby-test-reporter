@@ -15,7 +15,9 @@ module CodeClimate
           git_branch = branch_from_git
           ci_branch = Ci.service_data[:branch]
 
-          if ci_branch.to_s.strip.size > 0
+          if ci_branch.to_s.strip.size > 0 && ci_branch.to_s.strip.start_with?("refs/heads/")
+            ci_branch.sub(/^refs\/heads\//, "")
+          elsif ci_branch.to_s.strip.size > 0
             ci_branch.sub(/^origin\//, "")
           elsif git_branch.to_s.strip.size > 0 && !git_branch.to_s.strip.start_with?("(")
             git_branch.sub(/^origin\//, "")
