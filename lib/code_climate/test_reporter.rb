@@ -29,6 +29,7 @@ module CodeClimate
       run_on_current_branch = !!(current_branch =~ /#{configured_branch}/i)
       unless run_on_current_branch
         logger.info("Not reporting to Code Climate because #{configured_branch} is set as the reporting branch.")
+logger.info(ENV)
       end
 
       run_on_current_branch
